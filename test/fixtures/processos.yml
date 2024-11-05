@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  orgao: MyString
+  setor: MyString
+  gestor_processo: MyString
+  servidor_responsavel: MyString
+  objetivo_estrategico: MyString
+  embasamento_legal: MyString
+  sistemas_utilizados: MyString
+  partes_interessadas: MyString
+
+two:
+  nome: MyString
+  orgao: MyString
+  setor: MyString
+  gestor_processo: MyString
+  servidor_responsavel: MyString
+  objetivo_estrategico: MyString
+  embasamento_legal: MyString
+  sistemas_utilizados: MyString
+  partes_interessadas: MyString
