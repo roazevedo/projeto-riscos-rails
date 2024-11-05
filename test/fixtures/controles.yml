@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  novo_ou_modificado: false
+  tipo_do_controle: MyString
+  natureza_do_controle: MyString
+  relacao_com_o_risco: MyString
+  responsavel_pela_acao: MyString
+  data_prevista_de_inicio: 2024-11-05
+  data_prevista_de_conclusao: 2024-11-05
+  data_real_de_conclusao: 2024-11-05
+  orgaos_setores_envolvidos: MyString
+  analise_EGR: MyText
+  risco: one
+
+two:
+  nome: MyString
+  novo_ou_modificado: false
+  tipo_do_controle: MyString
+  natureza_do_controle: MyString
+  relacao_com_o_risco: MyString
+  responsavel_pela_acao: MyString
+  data_prevista_de_inicio: 2024-11-05
+  data_prevista_de_conclusao: 2024-11-05
+  data_real_de_conclusao: 2024-11-05
+  orgaos_setores_envolvidos: MyString
+  analise_EGR: MyText
+  risco: two

@@ -1,0 +1,53 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  data_identificacao: 2024-11-05
+  tipo_de_risco: MyString
+  associacao_risco: MyString
+  causas: MyText
+  consequencias: MyText
+  dimensoes_risco: MyString
+  probabilidade: 1
+  justificativa_pr: MyText
+  impacto: 1
+  justificativa_imp: MyText
+  risco_inerente: 1
+  existe_procedimento_de_controle: false
+  descricao_do_controle_existente: MyText
+  controle_eficaz: false
+  controle_proporcional: false
+  controle_razoavel: false
+  controle_adequado: false
+  fator_de_avaliacao_controles: 1
+  risco_residual: 1
+  resposta_sugerida_para_risco: MyString
+  data_maxima_para_implantacao_dos_controles_propostos: 2024-11-05
+  relacao_com_LGPD: false
+  processo: one
+
+two:
+  nome: MyString
+  data_identificacao: 2024-11-05
+  tipo_de_risco: MyString
+  associacao_risco: MyString
+  causas: MyText
+  consequencias: MyText
+  dimensoes_risco: MyString
+  probabilidade: 1
+  justificativa_pr: MyText
+  impacto: 1
+  justificativa_imp: MyText
+  risco_inerente: 1
+  existe_procedimento_de_controle: false
+  descricao_do_controle_existente: MyText
+  controle_eficaz: false
+  controle_proporcional: false
+  controle_razoavel: false
+  controle_adequado: false
+  fator_de_avaliacao_controles: 1
+  risco_residual: 1
+  resposta_sugerida_para_risco: MyString
+  data_maxima_para_implantacao_dos_controles_propostos: 2024-11-05
+  relacao_com_LGPD: false
+  processo: two
