@@ -1,0 +1,2 @@
+class RiscosController < ApplicationController
+end
