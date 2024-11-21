@@ -1,0 +1,79 @@
+<div class="d-flex">
+  <%= render "shared/sidebar" %>
+
+  <div class="container d-flex justify-content-center">
+    <div class="mt-4">
+      <div class="d-flex justify-content-between my-4">
+        <h1>Processos</h1>
+        <div class="d-flex align-items-center">
+          <%= link_to new_processo_path, class: "d-flex justify-content-center align-items-center btn btn-outline-secondary border rounded-pill", style: "width: 200px; height: 40px;", data: { bs_toggle: "modal", bs_target: "#exampleModal" }, remote: true do %>
+            <span>Adicionar Processo
+              <i class="fa-solid fa-plus"></i>
+            </span>
+          <% end %>
+        </div>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nome do Processo</th>
+            <th scope="col">Órgão</th>
+            <th scope="col">Setor Responsável</th>
+            <th scope="col">Gestor do Processo</th>
+            <th scope="col">Servidor Responsável</th>
+            <th scope="col">Objetivo Estratégico</th>
+            <th scope="col">Embasamento Legal</th>
+            <th scope="col">Sistemas Utilizados</th>
+            <th scope="col">Partes Interessadas</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @processos.each do |processo| %>
+            <tr>
+              <th scope="row"><%= link_to processo.nome, processo_path(processo), class: "text-dark" %></th>
+              <td><%= processo.orgao %></td>
+              <td><%= processo.setor %></td>
+              <td><%= processo.gestor_processo %></td>
+              <td><%= processo.servidor_responsavel %></td>
+              <td><%= processo.objetivo_estrategico %></td>
+              <td><%= processo.embasamento_legal %></td>
+              <td><%= processo.sistemas_utilizados %></td>
+              <td><%= processo.partes_interessadas %></td>
+              <td>
+                <%= link_to edit_processo_path(processo) do %>
+                  <i class="fa-solid fa-pencil"></i>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to processo_path(processo), data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir este processo?" } do %>
+                  <i class="fa-solid fa-trash-can"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Adicionar Novo Processo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- O conteúdo do formulário será carregado aqui -->
+        <%= render "shared/form_processo", processo: @processo %>
+        <div id="modal-body-content"></div>
+      </div>
+    </div>
+  </div>
+</div>

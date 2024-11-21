@@ -1,0 +1,11 @@
+<div class="d-flex">
+  <%= render "shared/sidebar" %>
+  <div class="container d-flex justify-content-center">
+    <div class="mt-4">
+      <h1>Painel</h1>
+      <div>
+        <%= pie_chart User.group(:name).count %>
+      </div>
+    </div>
+  </div>
+</div>

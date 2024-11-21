@@ -1,0 +1,48 @@
+<div class="d-flex">
+  <%= render "shared/sidebar" %>
+
+  <div class="container">
+    <div class="mt-4">
+      <h1><%= @processo.nome %></h1>
+      <p><%= @processo.setor %></p>
+      <p><%= @processo.orgao %></p>
+      <p><%= @processo.gestor_processo %></p>
+      <p><%= @processo.servidor_responsavel %></p>
+      <p><%= @processo.objetivo_estrategico %></p>
+      <p><%= @processo.embasamento_legal %></p>
+      <p><%= @processo.sistemas_utilizados %></p>
+      <p><%= @processo.partes_interessadas %></p>
+
+      <div class="d-flex justify-content-between align-items-center" style="width: 350px;">
+        <p><%= link_to "Editar", edit_processo_path(@processo), class: "btn btn-primary" %></p>
+        <p><%= link_to "Voltar", processos_path, class: "btn btn-primary" %></p>
+        <p>
+          <%= link_to new_processo_risco_path(@processo), class: "d-flex justify-content-center align-items-center btn btn-outline-secondary border rounded-pill", style: "width: 200px; height: 40px;", data: { bs_toggle: "modal", bs_target: "#exampleModal" }, remote: true do %>
+            <span>Adicionar Novo Risco
+              <i class="fa-solid fa-plus"></i>
+            </span>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cadastrar Risco</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Renderizando a partial do formulário -->
+        <%= render 'shared/form_risco', processo: @processo, risco: @risco, tipo_de_risco: @tipo_de_risco, associacao_risco: @associacao_risco, dimensoes_risco: @dimensoes_risco, probabilidade: @probabilidade, impacto: @impacto, resposta_sugerida_para_risco: @resposta_sugerida_para_risco %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

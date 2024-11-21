@@ -1,0 +1,12 @@
+<%= simple_form_for processo do |f| %>
+  <%= f.input :nome %>
+  <%= f.input :orgao %>
+  <%= f.input :setor %>
+  <%= f.input :gestor_processo %>
+  <%= f.input :servidor_responsavel %>
+  <%= f.input :objetivo_estrategico %>
+  <%= f.input :embasamento_legal %>
+  <%= f.input :sistemas_utilizados %>
+  <%= f.input :partes_interessadas %>
+  <%= f.button :submit, processo.persisted? ? "Atualizar Processo" : "Criar Novo Processo", class: "btn btn-primary" %>
+<% end %>

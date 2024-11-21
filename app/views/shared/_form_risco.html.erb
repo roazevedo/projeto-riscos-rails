@@ -1,0 +1,28 @@
+<%= simple_form_for [processo, risco] do |f| %>
+  <%= f.input :nome, label: "Nome do Risco" %>
+  <%= f.input :data_identificacao, as: :string, label: "Data de Identificação", input_html: { data: { controller: "datepicker" } } %>
+  <%= f.input :tipo_de_risco, as: :select, collection: tipo_de_risco, label: "Tipo de Risco" %>
+  <%= f.input :associacao_risco, as: :select, collection: associacao_risco, label: "Associação do Risco" %>
+  <%= f.input :causas, label: "Causas" %>
+  <%= f.input :consequencias, label: "Consequências" %>
+  <%= f.input :dimensoes_risco, as: :select, collection: dimensoes_risco, label: "Dimensões do Risco" %>
+  <%= f.input :probabilidade, as: :select, collection: probabilidade, label: "Probabilidade (Frequência)" %>
+  <%= f.input :justificativa_pr, label: "Justificativa da Probabilidade (Frequência)" %>
+  <%= f.input :impacto, as: :select, collection: impacto, label: "Impacto" %>
+  <%= f.input :justificativa_imp, label: "Justificativa do Impacto" %>
+  <%= f.input :risco_inerente, label: "Risco Inerente", input_html: { disabled: true } %>
+  <%= f.input :existe_procedimento_de_controle, label: "Existe Procedimento de Controle?" %>
+  <%= f.input :descricao_do_controle_existente, label: "Descrição do Controle Existente" %>
+  <div class="d-flex justify-content-between">
+    <%= f.input :controle_eficaz, label: "O Controle é Eficaz?" %>
+    <%= f.input :controle_proporcional, label: "O Controle é Proporcional", input_html: { disabled: true } %>
+    <%= f.input :controle_razoavel, label: "O Controle é Razoável", input_html: { disabled: true } %>
+    <%= f.input :controle_adequado, label: "O Controle é Adequado", input_html: { disabled: true } %>
+  </div>
+  <%= f.input :fator_de_avaliacao_controles, label: "Fator de Avaliação dos Controles - FAC", input_html: { disabled: true } %>
+  <%= f.input :risco_residual, label: "Risco Residual", input_html: { disabled: true } %>
+  <%= f.input :resposta_sugerida_para_risco, as: :select, collection: resposta_sugerida_para_risco, label: "Resposta Sugerida para o Risco" %>
+  <%= f.input :data_maxima_para_implantacao_dos_controles_propostos, as: :string, label: "Data Máxima para Implantação dos Controles Propostos", input_html: { data: { controller: "datepicker" } } %>
+  <%= f.input :relacao_com_LGPD, label: "Tem Relação com a LGPD?" %>
+  <%= f.button :submit, risco.persisted? ? "Atualizar Risco" : "Criar Novo Risco", class: "btn btn-primary" %>
+<% end %>
