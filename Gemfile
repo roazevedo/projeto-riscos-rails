@@ -37,6 +37,24 @@ gem "bootsnap", require: false
 # Use devise for authentication
 gem "devise"
 
+# Use bootstrap for stylesheets
+gem "bootstrap", "~> 5.1"
+
+# Scss for stylesheets
+gem "sassc-rails"
+
+# Font Awesome for icons
+gem "font-awesome-sass", "~> 6.1"
+
+# Simple form for forms
+gem "simple_form"
+
+# Autoprefixer for CSS
+gem "autoprefixer-rails"
+
+# Chartkick for charts
+gem "chartkick"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

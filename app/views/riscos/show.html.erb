@@ -1,0 +1,43 @@
+<div class="d-flex">
+  <%= render "shared/sidebar" %>
+
+  <div class="container">
+    <div class="mt-4">
+      <h1><%= @risco.nome %></h1>
+      <p><%= @risco.data_identificacao %></p>
+      <p><%= @risco.tipo_de_risco %></p>
+      <p><%= @risco.associacao_risco %></p>
+      <p><%= @risco.causas %></p>
+      <p><%= @risco.consequencias %></p>
+      <p><%= @risco.dimensoes_risco %></p>
+      <p><%= @risco.probabilidade %></p>
+      <p><%= @risco.justificativa_pr %></p>
+      <p><%= @risco.impacto %></p>
+      <p><%= @risco.justificativa_imp %></p>
+      <p><%= @risco.risco_inerente %></p>
+      <p><%= @risco.existe_procedimento_de_controle %></p>
+      <p><%= @risco.descricao_do_controle_existente %></p>
+      <p><%= @risco.controle_eficaz %></p>
+      <p><%= @risco.controle_proporcional %></p>
+      <p><%= @risco.controle_razoavel %></p>
+      <p><%= @risco.controle_adequado %></p>
+      <p><%= @risco.fator_de_avaliacao_controles %></p>
+      <p><%= @risco.risco_residual %></p>
+      <p><%= @risco.resposta_sugerida_para_risco %></p>
+      <p><%= @risco.data_maxima_para_implantacao_dos_controles_propostos %></p>
+      <p><%= @risco.relacao_com_LGPD %></p>
+
+      <div class="d-flex justify-content-between align-items-center" style="width: 350px;">
+        <p><%= link_to "Editar", edit_risco_path(@risco), class: "btn btn-primary" %></p>
+        <p><%= link_to "Voltar", riscos_path, class: "btn btn-primary" %></p>
+        <p>
+          <%#<%= link_to new_risco_controle_path(@controle), class: "d-flex justify-content-center align-items-center btn btn-outline-secondary border rounded-pill", style: "width: 200px; height: 40px;" do %>
+            <%#<span>Adicionar Novo Controle
+              <i class="fa-solid fa-plus"></i>
+            </span>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
