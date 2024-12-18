@@ -44,7 +44,7 @@ gem "bootstrap", "~> 5.1"
 gem "sassc-rails"
 
 # Font Awesome for icons
-gem "font-awesome-sass", "~> 6.1"
+gem "font-awesome-sass", "~> 6.7"
 
 # Simple form for forms
 gem "simple_form"
