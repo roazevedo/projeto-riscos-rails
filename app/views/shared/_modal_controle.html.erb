@@ -1,0 +1,20 @@
+<%= turbo_frame_tag :bootstrap_modal, target: :_top do %>
+  <div class="modal fade" id="exampleModal" data-controller="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" inert>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= render "shared/form_controle", risco: @risco, controle: @controle, novo_ou_modificado: @novo_ou_modificado,
+            tipo_do_controle: @tipo_do_controle, natureza_do_controle: @natureza_do_controle,
+            relacao_com_o_risco: @relacao_com_o_risco %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

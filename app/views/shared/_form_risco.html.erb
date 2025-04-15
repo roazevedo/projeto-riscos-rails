@@ -1,28 +1,32 @@
-<%= simple_form_for [processo, risco] do |f| %>
+<%= simple_form_for [processo, risco], remote: true do |f| %>
   <%= f.input :nome, label: "Nome do Risco" %>
-  <%= f.input :data_identificacao, as: :string, label: "Data de Identificação", input_html: { data: { controller: "datepicker" } } %>
-  <%= f.input :tipo_de_risco, as: :select, collection: tipo_de_risco, label: "Tipo de Risco" %>
-  <%= f.input :associacao_risco, as: :select, collection: associacao_risco, label: "Associação do Risco" %>
-  <%= f.input :causas, label: "Causas" %>
-  <%= f.input :consequencias, label: "Consequências" %>
-  <%= f.input :dimensoes_risco, as: :select, collection: dimensoes_risco, label: "Dimensões do Risco" %>
-  <%= f.input :probabilidade, as: :select, collection: probabilidade, label: "Probabilidade (Frequência)" %>
-  <%= f.input :justificativa_pr, label: "Justificativa da Probabilidade (Frequência)" %>
-  <%= f.input :impacto, as: :select, collection: impacto, label: "Impacto" %>
-  <%= f.input :justificativa_imp, label: "Justificativa do Impacto" %>
-  <%= f.input :risco_inerente, label: "Risco Inerente", input_html: { disabled: true } %>
-  <%= f.input :existe_procedimento_de_controle, label: "Existe Procedimento de Controle?" %>
-  <%= f.input :descricao_do_controle_existente, label: "Descrição do Controle Existente" %>
-  <div class="d-flex justify-content-between">
-    <%= f.input :controle_eficaz, label: "O Controle é Eficaz?" %>
-    <%= f.input :controle_proporcional, label: "O Controle é Proporcional", input_html: { disabled: true } %>
-    <%= f.input :controle_razoavel, label: "O Controle é Razoável", input_html: { disabled: true } %>
-    <%= f.input :controle_adequado, label: "O Controle é Adequado", input_html: { disabled: true } %>
+  <div data-controller="data-max-implantacao">
+    <%= f.input :data_identificacao, as: :string, label: "Data de Identificação", input_html: { data: { controller: "datepicker", data_max_implantacao_target: "dataDeCadastro" } } %>
+    <%= f.input :tipo_de_risco, as: :select, collection: tipo_de_risco, label: "Tipo de Risco" %>
+    <%= f.input :associacao_risco, as: :select, collection: associacao_risco, label: "Associação do Risco" %>
+    <%= f.input :causas, label: "Causas" %>
+    <%= f.input :consequencias, label: "Consequências" %>
+    <%= f.input :dimensoes_risco, as: :select, collection: dimensoes_risco, label: "Dimensões do Risco" %>
+    <div data-controller="risco-inerente risco-residual">
+      <%= f.input :probabilidade, as: :select, collection: probabilidade, label: "Probabilidade (Frequência)", input_html: { data: { risco_inerente_target: "probabilidade", action: "change->risco-inerente#calculateInerente" } } %>
+      <%= f.input :justificativa_pr, label: "Justificativa da Probabilidade (Frequência)" %>
+      <%= f.input :impacto, as: :select, collection: impacto, label: "Impacto", input_html: { data: { risco_inerente_target: "impacto", action: "change->risco-inerente#calculateInerente" } } %>
+      <%= f.input :justificativa_imp, label: "Justificativa do Impacto" %>
+      <%= f.input :risco_inerente, as: :string, label: "Risco Inerente", input_html: { readonly: true, data: { risco_inerente_target: "riscoInerente", action: "change->risco-residual#calculateResidual" } } %>
+      <div data-controller="checkbox-controles-existentes fac procedimento-controle">
+        <%= f.input :existe_procedimento_de_controle, label: "Existe Procedimento de Controle?", input_html: { data: { procedimento_controle_target: "existeControles", action: "change->procedimento-controle#habilitarCheckboxes" } } %>
+        <%= f.input :descricao_do_controle_existente, label: "Descrição do Controle Existente" %>
+        <%= f.input :controle_eficaz, label: "O Controle é Eficaz?", input_html: { disabled: true, data: { action: "click->checkbox-controles-existentes#enable change->fac#calculateFac", checkbox_controles_existentes_target: "checkboxMaster", fac_target: "checkbox", procedimento_controle_target: "checkEficaz" } } %>
+        <%= f.input :controle_proporcional, label: "O Controle é Proporcional", input_html: { disabled: true, data: { checkbox_controles_existentes_target: "checkbox", fac_target: "checkbox", action: "change->fac#calculateFac" } } %>
+        <%= f.input :controle_razoavel, label: "O Controle é Razoável", input_html: { disabled: true, data: { checkbox_controles_existentes_target: "checkbox", fac_target: "checkbox", action: "change->fac#calculateFac" } } %>
+        <%= f.input :controle_adequado, label: "O Controle é Adequado", input_html: { disabled: true, data: { checkbox_controles_existentes_target: "checkbox", fac_target: "checkbox", action: "change->fac#calculateFac" } } %>
+        <%= f.input :fator_de_avaliacao_controles, as: :string, label: "Fator de Avaliação dos Controles - FAC", input_html: { readonly: true, data: { fac_target: "fac", action: "change->risco-residual#calculateResidual" } } %>
+      </div>
+      <%= f.input :risco_residual, as: :string, label: "Risco Residual", input_html: { readonly: true, data: { risco_residual_target: "riscoResidual", data_max_implantacao_target: "residualDataMax", action: "change->data-max-implantacao#calculateData" } } %>
+    </div>
+    <%= f.input :resposta_sugerida_para_risco, as: :select, collection: resposta_sugerida_para_risco, label: "Resposta Sugerida para o Risco" %>
+    <%= f.input :data_maxima_para_implantacao_dos_controles_propostos, as: :string, label: "Data Máxima para Implantação dos Controles Propostos", input_html: { readonly: true, data: { controller: "datepicker", data_max_implantacao_target: "dataMaxImplantacao" } } %>
   </div>
-  <%= f.input :fator_de_avaliacao_controles, label: "Fator de Avaliação dos Controles - FAC", input_html: { disabled: true } %>
-  <%= f.input :risco_residual, label: "Risco Residual", input_html: { disabled: true } %>
-  <%= f.input :resposta_sugerida_para_risco, as: :select, collection: resposta_sugerida_para_risco, label: "Resposta Sugerida para o Risco" %>
-  <%= f.input :data_maxima_para_implantacao_dos_controles_propostos, as: :string, label: "Data Máxima para Implantação dos Controles Propostos", input_html: { data: { controller: "datepicker" } } %>
   <%= f.input :relacao_com_LGPD, label: "Tem Relação com a LGPD?" %>
   <%= f.button :submit, risco.persisted? ? "Atualizar Risco" : "Criar Novo Risco", class: "btn btn-primary" %>
 <% end %>

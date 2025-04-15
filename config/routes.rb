@@ -15,6 +15,15 @@ Rails.application.routes.draw do
 
   resources :dashboards, only: ['index']
 
+  get 'relatorios/gerar_relatorio', to: 'relatorios#gerar_relatorio', as: :gerar_relatorio
+
+  resources :relatorios, only: [] do
+    collection do
+      get :setores
+      get :processos
+    end
+  end
+
   resources :processos do
     resources :riscos, only: ['new', 'create']
   end

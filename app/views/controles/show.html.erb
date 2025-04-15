@@ -1,0 +1,26 @@
+<div class="d-flex" style="height: 100vh; width: auto;">
+  <div class="container">
+    <div class="my-4">
+      <h1><%=@controle.nome %></h1>
+      <p><strong>Controle Novo ou Modificado? </strong><%= @controle.novo_ou_modificado %></p>
+      <p><strong>Tipo do Controle: </strong><%= @controle.tipo_do_controle %></p>
+      <p><strong>Natureza do Controle: </strong><%= @controle.natureza_do_controle %></p>
+      <p><strong>Relação com o Risco: </strong><%= @controle.relacao_com_o_risco %></p>
+      <p><strong>Responsável pela Ação: </strong><%= @controle.responsavel_pela_acao %></p>
+      <p><strong>Data Prevista de Início: </strong><%= @controle.data_prevista_de_inicio %></p>
+      <p><strong>Data Prevista de Conclusão: </strong><%= @controle.data_prevista_de_conclusao %></p>
+      <p><strong>Data Real de Conclusão: </strong><%= @controle.data_real_de_conclusao %></p>
+      <p><strong>Órgãos Setores Envolvidos: </strong><%= @controle.orgaos_setores_envolvidos %></p>
+      <p><strong>Análise EGR: </strong><%= @controle.analise_EGR %></p>
+
+      <div class="d-flex justify-content-between align-items-center" style="width: 330px;">
+        <p><%= link_to "Editar", edit_controle_path(@controle), data: { controller:"show-form", action: "click->show-form#showForm" }, class: "btn btn-primary", style: "width: 100px;" %></p>
+        <p><%= link_to "Voltar", risco_path(@risco), class: "btn btn-primary", style: "width: 100px;" %></p>
+        <p>
+          <%= link_to "Excluir", controle_path(@controle),
+          data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir este controle?" },
+          class: "btn btn-outline-danger",
+          style: "width: 100px;" %>
+        </p>
+      </div>
+<%= turbo_frame_tag "bootstrap_modal" %>

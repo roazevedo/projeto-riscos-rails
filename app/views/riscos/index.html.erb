@@ -1,0 +1,48 @@
+<div class="container" style="height: 100vh; width: auto;">
+  <div>
+    <% if @riscos.exists? %>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nome do Risco</th>
+            <th scope="col">Associado ao Processo</th>
+            <th scope="col">Órgão</th>
+            <th scope="col">Data de identificação</th>
+            <th scope="col">Tipo de Risco</th>
+            <th scope="col">Associação do Risco</th>
+            <th scope="col">Dimensões do Risco</th>
+            <th scope="col">Probabilidade</th>
+            <th scope="col">Impacto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @riscos.each do |risco| %>
+            <tr>
+              <td><%= link_to risco.nome, risco_path(risco), class: "text-dark text-decoration-none" %></td>
+              <td><%= link_to risco.processo.nome, risco_path(risco), class: "text-dark text-decoration-none" %></td>
+              <td><%= link_to risco.processo.orgao, risco_path(risco), class: "text-dark text-decoration-none" %></td>
+              <td><%= link_to risco.data_identificacao, risco_path(risco), class: "text-dark text-decoration-none" %></td>
+              <td><%= link_to risco.tipo_de_risco, risco_path(risco), class: "text-dark text-decoration-none" %></td>
+              <td><%= link_to risco.dimensoes_risco, risco_path(risco), class: "text-dark text-decoration-none" %></td>
+              <td><%= link_to risco.associacao_risco, risco_path(risco), class: "text-dark text-decoration-none" %></td>
+              <td><%= link_to risco.probabilidade, risco_path(risco), class: "text-dark text-decoration-none" %></td>
+              <td><%= link_to risco.impacto, risco_path(risco), class: "text-dark text-decoration-none" %></td>
+              <td>
+                <%= link_to edit_risco_path(risco), data: { controller:"show-form", action: "click->show-form#showForm" }, remote: true do %>
+                  <i class="fa-solid fa-pencil"></i>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to risco_path(risco), data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir este processo?" } do %>
+                  <i class="fa-solid fa-trash-can"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <h1>Nenhum risco cadastrado</h1>
+    <% end %>
+  </div>
+</div>

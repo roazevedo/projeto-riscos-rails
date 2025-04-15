@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 100vw;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="max-width: 100vw; height: 80px;">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
+    <% if !user_signed_in? %>
       <%= image_tag "logo.png", alt: "CGM-RJ", width: 50 %>
     <% end %>
 
@@ -18,9 +18,6 @@
           <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
         <% end %>
       </ul>
-      <%# <%= link_to destroy_user_session_path, method: :delete do %>
-        <%# <i class="fa-solid fa-right-from-bracket"></i> Log out
-      <% end %>
     </div>
   </div>
 </nav>

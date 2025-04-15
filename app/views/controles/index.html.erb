@@ -1,0 +1,52 @@
+<div class="container">
+  <% if @controles.exists? %>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Nome do Controle</th>
+          <th scope="col">Estabelecido para qual Risco?</th>
+          <th scope="col">Controle Novo ou Modificado?</th>
+          <th scope="col">Tipo do Controle</th>
+          <th scope="col">Natureza do Controle</th>
+          <th scope="col">Relação com o Risco</th>
+          <th scope="col">Responsável pela Ação</th>
+          <th scope="col">Data Prevista de Início</th>
+          <th scope="col">Data Prevista de Conclusão</th>
+          <th scope="col">Data Real de Conclusão</th>
+          <th scope="col">Órgãos Setores Envolvidos</th>
+          <th scope="col">Análise EGR</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @controles.each do |controle| %>
+          <tr>
+            <td><%= link_to controle.nome, controle_path(controle), class: "text-dark text-decoration-none" %></td>
+            <td><%= link_to controle.risco.nome, controle_path(controle), class: "text-dark text-decoration-none" %></td>
+            <td><%= link_to controle.formatar_novo_ou_modificado, controle_path(controle), class: "text-dark text-decoration-none" %></td>
+            <td><%= link_to controle.tipo_do_controle, controle_path(controle), class: "text-dark text-decoration-none" %></td>
+            <td><%= link_to controle.natureza_do_controle, controle_path(controle), class: "text-dark text-decoration-none" %></td>
+            <td><%= link_to controle.relacao_com_o_risco, controle_path(controle), class: "text-dark text-decoration-none" %></td>
+            <td><%= link_to controle.responsavel_pela_acao, controle_path(controle), class: "text-dark text-decoration-none" %></td>
+            <td><%= link_to controle.data_prevista_de_inicio, controle_path(controle), class: "text-dark text-decoration-none" %></td>
+            <td><%= link_to controle.data_prevista_de_conclusao, controle_path(controle), class: "text-dark text-decoration-none" %></td>
+            <td><%= link_to controle.data_real_de_conclusao, controle_path(controle), class: "text-dark text-decoration-none" %></td>
+            <td><%= link_to controle.orgaos_setores_envolvidos, controle_path(controle), class: "text-dark text-decoration-none" %></td>
+            <td><%= link_to controle.analise_EGR, controle_path(controle), class: "text-dark text-decoration-none" %></td>
+            <td>
+              <%= link_to edit_controle_path(controle), data: { controller:"show-form", action: "click->show-form#showForm" }, remote: true do %>
+                <i class="fa-solid fa-pencil"></i>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to controle_path(controle), data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir este processo?" } do %>
+                <i class="fa-solid fa-trash-can"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h1>Nenhum Controle Cadastrado</h1>
+  <% end %>
+</div>

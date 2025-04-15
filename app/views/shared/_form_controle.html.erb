@@ -1,0 +1,14 @@
+<%= simple_form_for [risco, controle], remote: true do |f| %>
+  <%= f.input :nome, label: "Nome do Controle" %>
+  <%= f.input :novo_ou_modificado, as: :select, collection: novo_ou_modificado, label: "Controle Novo ou Modificado?" %>
+  <%= f.input :tipo_do_controle, as: :select, collection: tipo_do_controle, label: "Tipo do Controle" %>
+  <%= f.input :natureza_do_controle, as: :select, collection: natureza_do_controle, label: "Natureza do Controle" %>
+  <%= f.input :relacao_com_o_risco, as: :select, collection: relacao_com_o_risco, label: "Relação com o Risco" %>
+  <%= f.input :responsavel_pela_acao, label: "Responsável pela Ação" %>
+  <%= f.input :data_prevista_de_inicio, as: :string, label: "Data Prevista de Início", input_html: { data: { controller: "datepicker" } } %>
+  <%= f.input :data_prevista_de_conclusao, as: :string, label: "Data Prevista de Conclusão", input_html: { data: { controller: "datepicker" } } %>
+  <%= f.input :data_real_de_conclusao, as: :string, label: "Data Real de Conclusão", input_html: { data: { controller: "datepicker" } } %>
+  <%= f.input :orgaos_setores_envolvidos, label: "Órgãos e Setores Envolvidos" %>
+  <%= f.input :analise_EGR, label: "Análise EGR" %>
+  <%= f.button :submit, controle.persisted? ? "Atualizar Controle" : "Criar Novo Controle", class: "btn btn-primary" %>
+<% end %>

@@ -1,7 +1,7 @@
 class ProcessosController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
   before_action :set_processo, only: [:show, :edit, :update, :destroy]
-  before_action :set_dropboxes_values_form, only: [:new, :edit]
+  before_action :set_dropboxes_values_form, only: [:show, :new, :edit]
 
   def home
     @resource = User.new
@@ -13,20 +13,14 @@ class ProcessosController < ApplicationController
 
   def index
     @processos = Processo.all
-    @processo = Processo.new
   end
 
   def show
-    @risco = Risco.new
+    @riscos = @processo.riscos
   end
 
   def new
     @processo = Processo.new
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def create

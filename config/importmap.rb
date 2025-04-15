@@ -9,4 +9,9 @@ pin "bootstrap", to: "bootstrap.min.js", preload: true
 pin "@popperjs/core", to: "popper.js", preload: true
 pin "chartkick", to: "chartkick.js"
 pin "Chart.bundle", to: "Chart.bundle.js"
-pin "flatpickr" # @4.6.13
+pin "sweetalert2" # @11.14.5
+# config/importmap.rb
+pin "date-fns", to: "https://ga.jspm.io/npm:date-fns@2.29.3/esm/index.js"
+# config/importmap.rb
+pin "flatpickr", to: "https://ga.jspm.io/npm:flatpickr@4.6.13/dist/flatpickr.js"
+pin "flatpickr/dist/l10n/pt", to: "https://ga.jspm.io/npm:flatpickr@4.6.13/dist/l10n/pt.js"

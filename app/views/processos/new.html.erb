@@ -1,9 +1,10 @@
-<div class="container d-flex justify-content-center my-5">
-  <div class="col-8">
-    <div class="border rounded p-5">
-      <h1 class="d-flex justify-content-center mb-5">Adicione um novo processo</h1>
-      <%= render "shared/form_processo", processo: @processo %>
+<%= turbo_frame_tag "modal" do %>
+  <div class="container d-flex justify-content-center my-5">
+    <div class="col-8">
+      <div class="border rounded p-5">
+        <h1 class="d-flex justify-content-center mb-5">Adicione um novo processo</h1>
+        <%= render "shared/form_processo", processo: @processo %>
+      </div>
     </div>
   </div>
-</div>
-
+<% end %>
