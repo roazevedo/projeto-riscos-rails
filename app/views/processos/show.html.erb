@@ -1,48 +1,82 @@
 <div class="d-flex">
-  <%= render "shared/sidebar" %>
-
-  <div class="container">
-    <div class="mt-4">
-      <h1><%= @processo.nome %></h1>
-      <p><%= @processo.setor %></p>
-      <p><%= @processo.orgao %></p>
-      <p><%= @processo.gestor_processo %></p>
-      <p><%= @processo.servidor_responsavel %></p>
-      <p><%= @processo.objetivo_estrategico %></p>
-      <p><%= @processo.embasamento_legal %></p>
-      <p><%= @processo.sistemas_utilizados %></p>
-      <p><%= @processo.partes_interessadas %></p>
-
-      <div class="d-flex justify-content-between align-items-center" style="width: 350px;">
-        <p><%= link_to "Editar", edit_processo_path(@processo), class: "btn btn-primary" %></p>
-        <p><%= link_to "Voltar", processos_path, class: "btn btn-primary" %></p>
-        <p>
-          <%= link_to new_processo_risco_path(@processo), class: "d-flex justify-content-center align-items-center btn btn-outline-secondary border rounded-pill", style: "width: 200px; height: 40px;", data: { bs_toggle: "modal", bs_target: "#exampleModal" }, remote: true do %>
-            <span>Adicionar Novo Risco
-              <i class="fa-solid fa-plus"></i>
-            </span>
-          <% end %>
-        </p>
+  <div style="height: 100vh; width: auto;">
+    <div class="container">
+      <div class="mt-4">
+        <h1><%= @processo.nome %></h1>
+        <hr>
+        <p><strong>Órgão: </strong><%= @processo.orgao %></p>
+        <p><strong>Setor: </strong><%= @processo.setor %></p>
+        <p><strong>Gestor do Processo: </strong><%= @processo.gestor_processo %></p>
+        <p><strong>Servidor Responsável: </strong><%= @processo.servidor_responsavel %></p>
+        <p><strong>Objetivo Estratégico Associado: </strong><%= @processo.objetivo_estrategico %></p>
+        <p><strong>Embasamento Legal: </strong><%= @processo.embasamento_legal %></p>
+        <p><strong>Sistemas Utilizados: </strong><%= @processo.sistemas_utilizados %></p>
+        <p><strong>Partes Interessadas: </strong><%= @processo.partes_interessadas %></p>
+        <div class="d-flex justify-content-between align-items-center" style="width: 600px;">
+          <p><%= link_to "Editar", edit_processo_path(@processo), data: { controller:"show-form", action: "click->show-form#showForm" }, class: "btn btn-primary", style: "width: 100px;" %></p>
+          <p><%= link_to "Voltar", processos_path, class: "btn btn-primary", style: "width: 100px;" %></p>
+          <p>
+            <%= link_to "Excluir", processo_path(@processo),
+            data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir este processo?" },
+            class: "btn btn-outline-danger",
+            style: "width: 100px;" %>
+          </p>
+          <p>
+            <%= link_to new_processo_risco_path(@processo), data: { controller:"show-form", action: "click->show-form#showForm" },
+              class: "d-flex justify-content-center align-items-center btn btn-outline-secondary border rounded-pill",
+              style: "width: 250px; height: 40px;",
+              remote: true do %>
+              <span>Adicionar Novo Risco
+                <i class="fa-solid fa-plus"></i>
+              </span>
+            <% end %>
+          </p>
+        </div>
       </div>
+    </div>
+    <hr>
+    <div>
+      <% if @riscos.exists? %>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Nome do Risco</th>
+              <th scope="col">Data de identificação</th>
+              <th scope="col">Tipo de Risco</th>
+              <th scope="col">Associação do Risco</th>
+              <th scope="col">Dimensões do Risco</th>
+              <th scope="col">Probabilidade</th>
+              <th scope="col">Impacto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @riscos.each do |risco| %>
+              <tr>
+                <td><%= link_to risco.nome, risco_path(risco), class: "text-dark text-decoration-none" %></td>
+                <td><%= link_to risco.data_identificacao, risco_path(risco), class: "text-dark text-decoration-none" %></td>
+                <td><%= link_to risco.tipo_de_risco, risco_path(risco), class: "text-dark text-decoration-none" %></td>
+                <td><%= link_to risco.dimensoes_risco, risco_path(risco), class: "text-dark text-decoration-none" %></td>
+                <td><%= link_to risco.associacao_risco, risco_path(risco), class: "text-dark text-decoration-none" %></td>
+                <td><%= link_to risco.probabilidade, risco_path(risco), class: "text-dark text-decoration-none" %></td>
+                <td><%= link_to risco.impacto, risco_path(risco), class: "text-dark text-decoration-none" %></td>
+                <td>
+                  <%= link_to edit_risco_path(risco), data: { controller:"show-form", action: "click->show-form#showForm" }, remote: true do %>
+                    <i class="fa-solid fa-pencil"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to risco_path(risco), data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir este processo?" } do %>
+                    <i class="fa-solid fa-trash-can"></i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <h1>Nenhum risco cadastrado</h1>
+      <% end %>
     </div>
   </div>
 </div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Cadastrar Risco</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- Renderizando a partial do formulário -->
-        <%= render 'shared/form_risco', processo: @processo, risco: @risco, tipo_de_risco: @tipo_de_risco, associacao_risco: @associacao_risco, dimensoes_risco: @dimensoes_risco, probabilidade: @probabilidade, impacto: @impacto, resposta_sugerida_para_risco: @resposta_sugerida_para_risco %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-      </div>
-    </div>
-  </div>
-</div>
+<%= turbo_frame_tag "bootstrap_modal" %>

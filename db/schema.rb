@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_06_155129) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_16_191540) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,6 +46,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_06_155129) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "relatorios", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "riscos", force: :cascade do |t|
     t.string "nome"
     t.date "data_identificacao"
@@ -54,19 +59,19 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_06_155129) do
     t.text "causas"
     t.text "consequencias"
     t.string "dimensoes_risco"
-    t.integer "probabilidade"
+    t.string "probabilidade"
     t.text "justificativa_pr"
-    t.integer "impacto"
+    t.string "impacto"
     t.text "justificativa_imp"
-    t.integer "risco_inerente"
+    t.string "risco_inerente"
     t.boolean "existe_procedimento_de_controle"
     t.text "descricao_do_controle_existente"
     t.boolean "controle_eficaz"
     t.boolean "controle_proporcional"
     t.boolean "controle_razoavel"
     t.boolean "controle_adequado"
-    t.integer "fator_de_avaliacao_controles"
-    t.integer "risco_residual"
+    t.string "fator_de_avaliacao_controles"
+    t.string "risco_residual"
     t.string "resposta_sugerida_para_risco"
     t.date "data_maxima_para_implantacao_dos_controles_propostos"
     t.boolean "relacao_com_LGPD"

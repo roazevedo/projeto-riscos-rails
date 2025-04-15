@@ -3,5 +3,8 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "@popperjs/core"
 import "bootstrap"
+window.bootstrap = bootstrap
 import "chartkick"
 import "Chart.bundle"
+import Swal from 'sweetalert2'
+window.Swal = Swal;

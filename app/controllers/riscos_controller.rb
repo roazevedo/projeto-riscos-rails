@@ -7,14 +7,13 @@ class RiscosController < ApplicationController
     @riscos = Risco.all
   end
 
-  def show; end
+  def show
+    @processo = @risco.processo
+    @controles = @risco.controles
+  end
 
   def new
     @risco = Risco.new
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def create
@@ -37,8 +36,9 @@ class RiscosController < ApplicationController
   end
 
   def destroy
+    @processo = @risco.processo
     if @risco.destroy
-      redirect_to riscos_path, notice: 'Risco excluído com sucesso'
+      redirect_to processo_path(@processo), notice: 'Risco excluído com sucesso'
     else
       redirect_to @risco, alert: 'Erro ao excluir risco', status: :unprocessable_entity
     end
